@@ -1,39 +1,36 @@
-const startBtn = document.getElementById("startBtn");
-const video = document.getElementById("introVideo");
-const overlay = document.getElementById("fadeOverlay");
+const fingerprintBtn = document.getElementById("fingerprintBtn");
+const launchVideo = document.getElementById("launchVideo");
+const initialText = document.getElementById("initialText");
+const activatedText = document.getElementById("activatedText");
 const resetBtn = document.getElementById("resetBtn");
 
-function startExperience() {
-    startBtn.style.display = "none";
-    video.style.display = "block";
+const STORAGE_KEY = "launchActivated";
 
-    // Fade in
-    requestAnimationFrame(() => {
-        overlay.classList.add("hidden");
-    });
-
-    video.play();
-
-    // Analytics trigger
-    if (window.gtag) {
-        gtag("event", "video_start", {
-            event_category: "engagement",
-            event_label: "intro_video"
-        });
-    }
-
-    localStorage.setItem("videoPlayed", "true");
-}
-
-// Auto-play if already visited
-if (localStorage.getItem("videoPlayed") === "true") {
-    startExperience();
-}
-
-startBtn.addEventListener("click", startExperience);
-
-// Reset for testing
-resetBtn.addEventListener("click", () => {
-    localStorage.removeItem("videoPlayed");
-    location.reload();
+/* Restore state */
+window.addEventListener("load", () => {
+  if (localStorage.getItem(STORAGE_KEY) === "true") {
+    showActivatedState();
+  }
 });
+
+/* Activate launch */
+fingerprintBtn.addEventListener("click", () => {
+  localStorage.setItem(STORAGE_KEY, "true");
+  showActivatedState();
+
+  launchVideo.currentTime = 0;
+  launchVideo.play();
+});
+
+/* Reset */
+resetBtn.addEventListener("click", () => {
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+});
+
+function showActivatedState() {
+  initialText.classList.add("hidden");
+  activatedText.classList.remove("hidden");
+  fingerprintBtn.classList.add("hidden");
+  launchVideo.classList.remove("hidden");
+}
