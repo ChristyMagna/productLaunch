@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launch Experience</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Analytics (replace ID later) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+    </script>
+</head>
+<body>
+
+    <header class="banner">
+        <span>My Brand</span>
+        <button id="resetBtn">Reset</button>
+    </header>
+
+    <main class="container">
+
+        <button id="startBtn">Start Experience</button>
+
+        <!-- Fade overlay -->
+        <div id="fadeOverlay"></div>
+
+        <video id="introVideo"
+               playsinline
+               muted
+               preload="auto">
+            <source src="launch.webm" type="video/webm" />
+        </video>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
