@@ -1,43 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Launch Experience</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accu-Chek Launch</title>
 
-    <!-- Google Analytics (replace ID later) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
-    </script>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Cache control -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 </head>
+
 <body>
 
-    <header class="banner">
-        <span>My Brand</span>
-        <button id="resetBtn">Reset</button>
-    </header>
+  <div class="page">
 
-    <main class="container">
+    <!-- Top logos -->
+    <div class="top-bar">
+      <img src="Assets/AccuChekLogo.png" class="logo" alt="Accu-Chek" />
+      <img src="Assets/RocheLogo.png" class="logo" alt="Roche" />
+    </div>
 
-        <button id="startBtn">Start Experience</button>
+    <!-- Center content -->
+    <div class="center-content">
 
-        <!-- Fade overlay -->
-        <div id="fadeOverlay"></div>
+      <img
+        id="initialText"
+        src="Assets/initialText.png"
+        class="status-text"
+        alt="Press to activate"
+      />
 
-        <video id="introVideo"
-               playsinline
-               muted
-               preload="auto">
-            <source src="launch.webm" type="video/webm" />
-        </video>
+      <img
+        id="activatedText"
+        src="Assets/activatedText.png"
+        class="status-text hidden"
+        alt="Launch activated"
+      />
 
-    </main>
+      <button id="fingerprintBtn" class="fingerprint-btn">
+        <img src="Assets/fingerPrint.png" alt="Activate launch" />
+      </button>
 
-    <script src="script.js"></script>
+    </div>
+
+    <!-- Launch video -->
+    <video
+      id="launchVideo"
+      class="launch-video hidden"
+      playsinline
+      muted
+      preload="auto"
+    >
+      <source src="Assets/launch.webm" type="video/webm" />
+    </video>
+
+    <!-- Reset -->
+    <button id="resetBtn" class="reset-btn">Reset</button>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
