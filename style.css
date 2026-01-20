@@ -1,71 +1,114 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-    background: black;
-    color: white;
-    font-family: system-ui, sans-serif;
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: system-ui, sans-serif;
 }
 
-/* Top banner */
-.banner {
-    background: white;
-    color: black;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    font-weight: 600;
+/* Background */
+.page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url("Assets/bg.png") no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
 }
 
-#resetBtn {
-    font-size: 12px;
-    padding: 6px 12px;
+/* Top logos */
+.top-bar {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
 }
 
-/* Main */
-.container {
-    height: calc(100vh - 56px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+.logo {
+  max-height: 48px;
+  width: auto;
 }
 
-/* Button */
-#startBtn {
-    padding: 14px 28px;
-    font-size: 16px;
-    border-radius: 24px;
-    border: none;
-    cursor: pointer;
-    z-index: 2;
+/* Center content */
+.center-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  z-index: 5;
+}
+
+/* Text images */
+.status-text {
+  max-width: 80%;
+  height: auto;
+}
+
+/* Fingerprint button */
+.fingerprint-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fingerprint-btn img {
+  width: min(40vw, 220px);
+  height: auto;
+}
+
+.fingerprint-btn:hover {
+  transform: scale(1.05);
 }
 
 /* Video */
-video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: none;
-    z-index: 1;
+.launch-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 20;
 }
 
-/* Fade overlay */
-#fadeOverlay {
-    position: absolute;
-    inset: 0;
-    background: black;
-    opacity: 1;
-    pointer-events: none;
-    transition: opacity 1.2s ease;
-    z-index: 3;
+/* Reset button */
+.reset-btn {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 22px;
+  font-size: 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  z-index: 30;
 }
 
-    #fadeOverlay.hidden {
-        opacity: 0;
-    }
+/* Utilities */
+.hidden {
+  display: none;
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+  .logo {
+    max-height: 36px;
+  }
+
+  .center-content {
+    gap: 24px;
+  }
+}
