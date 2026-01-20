@@ -54,6 +54,7 @@ html, body {
 .status-text {
   max-width: 80%;
   height: auto;
+  margin-top: -40px; /* moves text up */
 }
 
 /* Fingerprint button */
@@ -112,3 +113,4 @@ html, body {
     gap: 24px;
   }
 }
+
