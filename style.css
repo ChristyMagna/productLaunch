@@ -41,6 +41,7 @@ html, body {
 .logo {
   width: clamp(120px, 18vw, 220px);
   height: auto;
+  object-fit: contain;
 }
 
 /* Center content */
@@ -118,6 +119,7 @@ html, body {
     gap: 24px;
   }
 }
+
 
 
 
