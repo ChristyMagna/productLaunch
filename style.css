@@ -108,16 +108,17 @@ html, body {
   display: none;
 }
 
-/* Mobile tweaks */
 @media (max-width: 600px) {
   .logo {
-    max-height: 36px;
+    width: clamp(120px, 55vw, 200px);
   }
+}
 
   .center-content {
     gap: 24px;
   }
 }
+
 
 
 
