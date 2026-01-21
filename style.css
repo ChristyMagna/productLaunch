@@ -23,19 +23,24 @@ html, body {
 /* Top logos */
 .top-bar {
   position: absolute;
-  top: 24px;
+  top: 0;
   left: 0;
   right: 0;
-  padding: 0 24px;
+  padding: 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   z-index: 10;
 }
 
+.top-bar img:last-child {
+  margin-top: 12px;
+  margin-right: 12px;
+}
+
 .logo {
-  max-height: 48px;
-  width: auto;
+  width: clamp(120px, 18vw, 220px);
+  height: auto;
 }
 
 /* Center content */
@@ -54,7 +59,7 @@ html, body {
 .status-text {
   max-width: 80%;
   height: auto;
-  transform: translateY(-80px); /* moves text up clearly */
+  transform: translateY(-80px);
 }
 
 /* Fingerprint button */
@@ -113,5 +118,6 @@ html, body {
     gap: 24px;
   }
 }
+
 
 
