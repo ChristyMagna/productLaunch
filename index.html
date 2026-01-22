@@ -1,68 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accu-Chek Launch</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accu-Chek Launch</title>
 
-  <link rel="stylesheet" href="style.css?v=1" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- Cache control -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+    <!-- Preload UI assets to avoid activation delay -->
+    <link rel="preload" href="Assets/activatedText.png" as="image">
+    <link rel="preload" href="Assets/fingerPrint.png" as="image">
+    <link rel="preload" href="Assets/overlay2.png" as="image">
+
+    <!-- Cache control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 </head>
 
-<body>
+<body class="app-hidden">
 
-  <div class="page">
+    <div class="page">
 
-    <!-- Top logos -->
-    <div class="top-bar">
-      <img src="Assets/AccuChekLogo.png" class="logo" alt="Accu-Chek" />
-      <img src="Assets/RocheLogo.png" class="logo" alt="Roche" />
+        <!-- Top logos -->
+        <div class="top-bar">
+            <img src="Assets/AccuChekLogo.png"
+                 class="logo accu-logo"
+                 alt="Accu-Chek" />
+            <img src="Assets/RocheLogo.png"
+                 class="logo roche-logo"
+                 alt="Roche" />
+        </div>
+
+        <!-- Main content -->
+        <div class="content">
+
+            <!-- Initial text -->
+            <div class="text-container">
+                <img src="Assets/initialText.png"
+                     alt="Press to activate" />
+            </div>
+
+            <!-- Fingerprint / overlay -->
+            <div class="fingerprint-container">
+
+                <img src="Assets/overlay2.png"
+                     class="fingerprint-overlay"
+                     alt=""
+                     aria-hidden="true" />
+
+                <img id="activatedOverlayText"
+                     src="Assets/activatedText.png"
+                     class="activated-overlay-text hidden"
+                     alt="Launch activated" />
+
+                <button id="fingerprintBtn" class="fingerprint-btn">
+                    <img src="Assets/fingerPrint.png"
+                         alt="Activate launch" />
+                </button>
+
+            </div>
+
+            <!-- Reset -->
+            <div class="reset-container">
+                <button id="resetBtn" class="reset-btn">
+                    Reset
+                </button>
+            </div>
+
+        </div>
     </div>
 
-    <!-- Center content -->
-    <div class="center-content">
-
-      <img
-        id="initialText"
-        src="Assets/initialText.png"
-        class="status-text"
-        alt="Press to activate"
-      />
-
-      <img
-        id="activatedText"
-        src="Assets/activatedText.png"
-        class="status-text hidden"
-        alt="Launch activated"
-      />
-
-      <button id="fingerprintBtn" class="fingerprint-btn">
-        <img src="Assets/fingerPrint.png" alt="Activate launch" />
-      </button>
-
-    </div>
-
-    <!-- Launch video -->
-    <video
-      id="launchVideo"
-      class="launch-video hidden"
-      playsinline
-      muted
-      preload="auto"
-    >
-      <source src="Assets/launch.webm" type="video/webm" />
-    </video>
-
-    <!-- Reset -->
-    <button id="resetBtn" class="reset-btn">Reset</button>
-
-  </div>
-
-  <script src="script.js?v=2"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
