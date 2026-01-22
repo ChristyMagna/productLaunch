@@ -1,126 +1,287 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
-  width: 100%;
-  height: 100%;
-  font-family: system-ui, sans-serif;
+    width: 100%;
+    font-family: system-ui, sans-serif;
+    background-color: #3a3a3a;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-/* Background */
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+/* Prevent UI flash before JS decides state */
+.app-hidden {
+    visibility: hidden;
+}
+
+:root {
+    --phone-max-width: 800px;
+}
+
 .page {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: url("Assets/bg.png") no-repeat center center;
-  background-size: cover;
-  overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: url("Assets/bg.png") no-repeat center center;
+    background-size: cover;
+    overflow-x: hidden;
 }
 
-/* Top logos */
+    .page::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 100%;
+        background: url("Assets/overlay1.png") no-repeat center top;
+        background-size: cover;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .page > * {
+        position: relative;
+        z-index: 2;
+    }
+
 .top-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  z-index: 10;
-}
-
-.top-bar img:last-child {
-  margin-top: 12px;
-  margin-right: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 30;
 }
 
 .logo {
-  width: clamp(120px, 18vw, 220px);
-  height: auto;
-  object-fit: contain;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
-/* Center content */
-.center-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  z-index: 5;
+.accu-logo {
+    width: clamp(140px, 20vw, 240px);
 }
 
-/* Text images */
-.status-text {
-  max-width: 80%;
-  height: auto;
-  transform: translateY(-80px);
+.roche-logo {
+    width: clamp(72px, 10vw, 120px);
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
-/* Fingerprint button */
+.content {
+    max-width: var(--phone-max-width);
+    margin: 0 auto;
+    padding-top: calc(180px + env(safe-area-inset-top));
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 48px;
+}
+
+.text-container,
+.fingerprint-container,
+.reset-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+    .text-container img {
+        width: clamp(220px, 60vw, 360px);
+        max-height: 12vh;
+        height: auto;
+    }
+
+.fingerprint-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+@keyframes overlay-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.fingerprint-overlay {
+    display: block;
+    width: 88%;
+    max-width: var(--phone-max-width);
+    height: auto;
+    margin: 0 auto;
+    pointer-events: none;
+    z-index: 1;
+    animation: overlay-rotate 18s linear infinite;
+    transform-origin: center center;
+}
+
+@keyframes fingerprint-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.08);
+        opacity: 0.85;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fingerprint-fade-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+}
+
+.fingerprint-btn.fade-out img {
+    animation: fingerprint-fade-out 1.0s ease forwards;
+}
+
+.activated-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    pointer-events: none;
+    z-index: 2;
+}
+
 .fingerprint-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+    position: absolute;
+    inset: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    /* 🔒 remove browser tap / focus UI */
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.fingerprint-btn img {
-  width: min(40vw, 220px);
-  height: auto;
-}
+    .fingerprint-btn:focus,
+    .fingerprint-btn:active {
+        outline: none;
+        box-shadow: none;
+        background-color: transparent;
+    }
 
-.fingerprint-btn:hover {
-  transform: scale(1.05);
-}
+    .fingerprint-btn img {
+        width: min(18vw, 110px);
+        height: auto;
+        animation: fingerprint-pulse 1.8s ease-in-out infinite;
+        will-change: transform, opacity;
+    }
 
-/* Video */
-.launch-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 20;
-}
-
-/* Reset button */
 .reset-btn {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 8px 22px;
-  font-size: 14px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  z-index: 30;
+    padding: 8px 22px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
 }
 
-/* Utilities */
 .hidden {
-  display: none;
+    display: none;
 }
 
-@media (max-width: 600px) {
-  .logo {
-    width: clamp(120px, 55vw, 200px);
-  }
+@media (max-width: 440px) {
+    .accu-logo {
+        width: clamp(140px, 52vw, 180px);
+    }
+
+    .roche-logo {
+        width: 72px;
+        margin-top: 18px;
+        margin-right: 18px;
+    }
+
+    .content {
+        padding-top: calc(150px + env(safe-area-inset-top));
+        padding-bottom: 60px;
+    }
+
+    .fingerprint-btn img {
+        width: min(32vw, 96px);
+    }
 }
 
-  .center-content {
-    gap: 24px;
-  }
+@media (orientation: portrait) {
+    .fingerprint-btn img {
+        width: min(16vw, 100px);
+    }
 }
 
+@media (max-height: 700px) {
+    .content {
+        gap: 80px;
+    }
+}
 
+@media (max-height: 600px) {
+    .content {
+        gap: 100px;
+    }
+}
 
+@media (min-height: 921px) {
+    .content {
+        gap: 72px;
+    }
+}
 
+@media (orientation: landscape) {
+    .text-container img {
+        width: auto;
+        max-width: 70vw;
+        max-height: 18vh;
+    }
 
+    .page {
+        overflow-y: visible;
+    }
+
+        .page::before {
+            height: 100%;
+            background-size: cover;
+        }
+}
