@@ -3,6 +3,14 @@ const activatedOverlayText = document.getElementById("activatedOverlayText");
 const resetBtn = document.getElementById("resetBtn");
 const textContainer = document.querySelector(".text-container");
 
+/* ✅ thank-you container (safe reference) */
+const thankyouContainer = document.querySelector(".thankyou-container");
+
+/* ✅ HARD GUARANTEE: hide thank-you immediately on load */
+if (thankyouContainer) {
+    thankyouContainer.classList.add("hidden");
+}
+
 const STORAGE_KEY = "launchActivated";
 
 /* Decide UI state as early as possible */
@@ -61,6 +69,11 @@ function showInitialState() {
     fingerprintBtn.classList.remove("hidden");
     fingerprintBtn.classList.remove("fade-out");
     fingerprintBtn.style.pointerEvents = "auto";
+
+    /* keep thank-you hidden */
+    if (thankyouContainer) {
+        thankyouContainer.classList.add("hidden");
+    }
 }
 
 /* Activated state */
@@ -68,4 +81,9 @@ function showActivatedState() {
     textContainer.classList.add("hidden");
     activatedOverlayText.classList.remove("hidden");
     fingerprintBtn.classList.add("hidden");
+
+    /* show thank-you ONLY after activation */
+    if (thankyouContainer) {
+        thankyouContainer.classList.remove("hidden");
+    }
 }
