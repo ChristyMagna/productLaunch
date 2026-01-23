@@ -322,8 +322,9 @@ html, body {
 }
 
 /* Production: hide reset button but preserve layout spacing */
-.reset-container {
+/* .reset-container {
     visibility: hidden;
     pointer-events: none;
-}
+} */
+
 
