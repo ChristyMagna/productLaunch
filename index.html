@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Preload UI assets to avoid activation delay -->
-    <link rel="preload" href="Assets/activatedText.png" as="image">
+    <link rel="preload" href="Assets/product.png" as="image">
+    <link rel="preload" href="Assets/thankyouText.png" as="image">
     <link rel="preload" href="Assets/fingerPrint.png" as="image">
     <link rel="preload" href="Assets/overlay2.png" as="image">
 
@@ -50,16 +51,24 @@
                      alt=""
                      aria-hidden="true" />
 
+                <!-- Product (activated state) -->
                 <img id="activatedOverlayText"
-                     src="Assets/activatedText.png"
+                     src="Assets/product.png"
                      class="activated-overlay-text hidden"
-                     alt="Launch activated" />
+                     alt="Product" />
 
+                <!-- Fingerprint button -->
                 <button id="fingerprintBtn" class="fingerprint-btn">
                     <img src="Assets/fingerPrint.png"
                          alt="Activate launch" />
                 </button>
 
+            </div>
+
+            <!-- Thank you text (activated state) -->
+            <div class="thankyou-container hidden">
+                <img src="Assets/thankyouText.png"
+                     alt="Thank you" />
             </div>
 
             <!-- Reset -->
