@@ -176,8 +176,8 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 300px;
+    width: 90%;
+    max-width: 600px;
     height: auto;
     pointer-events: none;
     z-index: 2;
@@ -185,15 +185,13 @@ html, body {
 
 .fingerprint-btn {
     position: absolute;
-    inset: 0;
     background: none;
     border: none;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     z-index: 3;
-    /* 🔒 remove browser tap / focus UI */
     outline: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -222,6 +220,38 @@ html, body {
 
 .hidden {
     display: none;
+}
+
+/* ============================= */
+/* ✅ NEW: Thank You Container   */
+/* (Same sizing as initialText) */
+/* ============================= */
+
+.thankyou-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+    .thankyou-container img {
+        width: clamp(200px, 52vw, 320px);
+        height: auto; 
+        max-height: none; 
+        object-fit: contain;
+    }
+
+
+/* Ensure thank-you text appears before product */
+.thankyou-container {
+    order: 1;
+}
+
+.fingerprint-container {
+    order: 2;
+}
+
+.reset-container {
+    order: 3;
 }
 
 @media (max-width: 440px) {
@@ -285,3 +315,14 @@ html, body {
             background-size: cover;
         }
 }
+
+/* Force-hide thank-you when hidden (override cascade) */
+.thankyou-container.hidden {
+    display: none !important;
+}
+
+/* Production: hide reset button but preserve layout spacing */
+/*.reset-container {
+    visibility: hidden;
+    pointer-events: none;
+}*/
