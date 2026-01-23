@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accu-Chek Launch</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css" />
+    <!-- Styles (versioned for cache control) -->
+    <link rel="stylesheet" href="style.css?v=1.0.1" />
 
     <!-- Preload UI assets to avoid activation delay -->
     <link rel="preload" href="Assets/product.png" as="image">
     <link rel="preload" href="Assets/thankyouText.png" as="image">
     <link rel="preload" href="Assets/fingerPrint.png" as="image">
     <link rel="preload" href="Assets/overlay2.png" as="image">
-
-    <!-- Cache control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
 </head>
 
 <body class="app-hidden">
@@ -71,7 +66,7 @@
                      alt="Thank you" />
             </div>
 
-            <!-- Reset -->
+            <!-- Reset (hidden via CSS in production) -->
             <div class="reset-container">
                 <button id="resetBtn" class="reset-btn">
                     Reset
@@ -81,6 +76,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Script (versioned for cache control) -->
+    <script src="script.js?v=1.0.1"></script>
 </body>
 </html>
