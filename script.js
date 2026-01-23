@@ -3,10 +3,10 @@ const activatedOverlayText = document.getElementById("activatedOverlayText");
 const resetBtn = document.getElementById("resetBtn");
 const textContainer = document.querySelector(".text-container");
 
-/* ✅ thank-you container (safe reference) */
+/* thank-you container (safe reference) */
 const thankyouContainer = document.querySelector(".thankyou-container");
 
-/* ✅ HARD GUARANTEE: hide thank-you immediately on load */
+/* HARD GUARANTEE: hide thank-you immediately on load */
 if (thankyouContainer) {
     thankyouContainer.classList.add("hidden");
 }
@@ -87,3 +87,4 @@ function showActivatedState() {
         thankyouContainer.classList.remove("hidden");
     }
 }
+
